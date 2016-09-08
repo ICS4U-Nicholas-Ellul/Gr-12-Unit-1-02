@@ -15,11 +15,14 @@ class Main {
     
         //Initialize Scanner that will control user input
         Scanner wordScanner = new Scanner(System.in);
-  		
-        System.out.println("Please enter log length in (m). 0.25, 0.5, or 1.");
+        
+  		   //get user to enter length of incoming logs
+        System.out.println("Please enter log length (m). 0.25, 0.5, or 1.");
         double logLength = wordScanner.nextDouble();
         System.out.println(logLength);
         
+        //Do a back alley way of responding with the amount of logs
+        //the truck can hold
         if(logLength == 0.25){
         	System.out.println("You can carry 220 logs.");
         }
