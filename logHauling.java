@@ -6,36 +6,38 @@
  *    Log lengths can be 0.25m, 0.5m, 1m.
  *
  ****************************************************************************/
- 
- import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 class Main {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException { 
     
-        //Initialize Scanner that will control user input
-        Scanner wordScanner = new Scanner(System.in);
+        double logSize;
+        int numberOfLogs;
+    	
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter the length of logs in meters.");
+        System.out.print("Valid choices are-> 0.25, 0.5, 1: ");
         
-  		   //get user to enter length of incoming logs
-        System.out.println("Please enter log length (m). 0.25, 0.5, or 1.");
-        double logLength = wordScanner.nextDouble();
-        System.out.println(logLength);
-        
-        //Do a back alley way of responding with the amount of logs
-        //the truck can hold
-        if(logLength == 0.25){
-        	System.out.println("You can carry 220 logs.");
+        try {
+            logSize = Double.parseDouble(br.readLine());
+            
+            if ((logSize == 0.25 )||(logSize == 0.5)||(logSize == 1.0)) {
+                // now calculate how many logs
+                numberOfLogs = (int) (1100 / (20 * logSize));
+                System.out.println("The truck can carry " + numberOfLogs + 
+                                   " logs that are " + logSize + " meter(s) long.");
+            } else {
+                System.err.println("Not valid input");
+            }
+        } catch(NumberFormatException nfe) {
+            System.err.println("Invalid input!");
         }
         
-        else if(logLength == 0.5){
-        	System.out.println("You can carry 110 logs.");
-        }
-        
-        else if(logLength == 1){
-        	System.out.println("You can carry 55 logs.");
-        }
-        else{
-        	System.out.println("Please enter your choice again.");
-        }
-  }
+        System.out.println();
+        System.out.println("Done.");
+    }
+
 }
